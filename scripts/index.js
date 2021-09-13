@@ -25,9 +25,9 @@ function playSong(songId) {
     return createElement("li", ["Title: ", titleEl ,"Artist: ", artistEl, "Duration: ", durationEl, imgEl],[], {id: `${id}`});
   }
 
-  const listCreator = createElement("ul",[],[],{id: "songs-list"});
-  document.getElementById('songs').append(listCreator);
-  const songsList = document.getElementById("songs-list");
+  const listCreator = createElement("ul",[],[],{id: "songs-list"}); //creating song list
+  document.getElementById('songs').append(listCreator); //implementing it in the html DOM
+  const songsList = document.getElementById("songs-list"); //referring it for future games with it ;)
   function elementToDOM(element){ //insert element into the DOM!
       songsList.append(element);
   }
