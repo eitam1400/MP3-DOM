@@ -13,19 +13,21 @@ function playSong(songId) {
  */
  function createSongElement( id, title, album, artist, duration, coverArt ) {
     
-    const titleEl = createElement("li", [title]);
+    const titleEl = createElement("span", [title]);
 
-    const artistEl = createElement("li", [artist]);
+    const artistEl = createElement("span", [artist]);
     
-    const durationEl = createElement("li", ["" + duration] ,["duration", "short-duration"], {onclick: `console.log('${duration}')`});
+    const durationEl = createElement("span", ["" + duration] ,["duration", "short-duration"], {onclick: `console.log('${duration}')`});
   
     const coverImageArt = [coverArt];
     const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArt});
   
-    return createElement("ul", ["Title: ", titleEl ,"Artist: ", artistEl, "Duration: ", durationEl, imgEl],[], {id: `${id}`});
+    return createElement("li", ["Title: ", titleEl ,"Artist: ", artistEl, "Duration: ", durationEl, imgEl],[], {id: `${id}`});
   }
 
-  const songsList = document.getElementById('songs');
+  const listCreator = createElement("ul",[],[],{id: "songs-list"});
+  document.getElementById('songs').append(listCreator);
+  const songsList = document.getElementById("songs-list");
   function elementToDOM(element){ //insert element into the DOM!
       songsList.append(element);
   }
@@ -36,6 +38,7 @@ function playSong(songId) {
     elementToDOM(createSongElement(song.id, song.title, song.album, song.artist, song.duration, song.coverArt))
   }
 
+ 
 /**
  * Creates a playlist DOM element based on a playlist object.
  */
@@ -77,6 +80,14 @@ function createElement(tagName, children = [], classes = [], attributes = {}) {
     }
     return element;
 }
+
+/* STYLES */
+//body 
+/* document.body.style.backgroundImage = radialGradient(farthest-corner at 40px 40px,
+    #f35 0%, #43e 100%);*/
+
+
+//list
 
 
 
