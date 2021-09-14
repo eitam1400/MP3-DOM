@@ -13,19 +13,21 @@ function playSong(songId) {
  */
  function createSongElement( id, title, album, artist, duration, coverArt ) {
     
-    const titleEl = createElement("span", [title]);
+    const titleEl = createElement("span", [title], ["song-info"]);
 
-    const artistEl = createElement("span", [artist]);
+    const albumEl = createElement("span", [album], ["song-info"]);
+
+    const artistEl = createElement("span", [artist], ["song-info"]);
     
-    const durationEl = createElement("span", ["" + duration] ,["duration", "short-duration"], {onclick: `console.log('${duration}')`});
+    const durationEl = createElement("span", ["" + duration] ,["duration", "short-duration", ["song-info"]], {onclick: `console.log('${duration}')`});
   
     const coverImageArt = [coverArt];
-    const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArt});
+    const imgEl = createElement("img", [] ,["album-art"], {src: coverImageArt, style: "border: 8px dotted yellow"});
   
-    return createElement("li", ["Title: ", titleEl ,"Artist: ", artistEl, "Duration: ", durationEl, imgEl],[], {id: `${id}`});
+    return createElement("td", ["Title: ", titleEl ,"Album: ", albumEl, "Artist: ", artistEl, "Duration: ", durationEl, imgEl],[], {id: `${id}`});
   }
 
-  const listCreator = createElement("ul",[],[],{id: "songs-list"}); //creating song list
+  const listCreator = createElement("tr",[],[],{id: "songs-list"}); //creating song list
   document.getElementById('songs').append(listCreator); //implementing it in the html DOM
   const songsList = document.getElementById("songs-list"); //referring it for future games with it ;)
   function elementToDOM(element){ //insert element into the DOM!
@@ -81,13 +83,56 @@ function createElement(tagName, children = [], classes = [], attributes = {}) {
     return element;
 }
 
-/* STYLES */
-//body 
+/* CSS STYLES */
+
+
+//body//
+const bodySelector = document.getElementsByTagName("body");
 /* document.body.style.backgroundImage = radialGradient(farthest-corner at 40px 40px,
     #f35 0%, #43e 100%);*/
+     for(const body of bodySelector){
+        const bodyStyle = body.style;
+       // bodyStyle.backgroundImage = "URL('https://store.wvbs.org/wp-content/uploads/StoryofMoses_MP3_download.png')";
+       // bodyStyle.backgroundRepeat = "no-repeat";
+        //bodyStyle.backgroundSize = "100%";
+        bodyStyle.backgroundImage = `radial-gradient(ellipse at top, #1DB954, transparent),
+            radial-gradient(ellipse at bottom, #191414, transparent)`;
+     }
 
 
-//list
+//list//
+const allSongs = document.getElementsByTagName("td");
+for(const song of allSongs){
+    const eachSongStyle = song.style;
+    eachSongStyle.listStyle = 'none';
+    //eachSongStyle.float = "left"
+    // eachSongStyle.alignItems = "center"
+    // eachSongStyle.display = "inline-flex"
+    // eachSongStyle.justifyContent = "start"
+    // eachSongStyle.flexDirection = "column"
+    // eachSongStyle.lineHeight = "3em"
+}
+
+// list-text
+const textOfSongs = document.getElementsByTagName("span");
+for(const textOfSong of textOfSongs){
+    const eachSongText = textOfSong.style;
+    eachSongText.alignItems = "center"
+    //eachSongText.marginLeft  "10px"
+    eachSongText.color = "red"
+}
+
+
+
+//images//
+const allImges = document.getElementsByTagName("img");
+for(const img of allImges){
+    const eachImgStyle = img.style;
+   // eachImgStyle.border = "8px dotted yellow";
+    eachImgStyle.padding = "5px"
+    eachImgStyle.margin = "100px"
+}
+
 
 
 

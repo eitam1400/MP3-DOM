@@ -1,1 +1,17 @@
 /* Your code here */
+
+@keyframes colorChanger {
+    0%   {background-color: red; rotate(0.5turn);}
+    25%  {background-color: yellow; translate(120px, 50%);}
+    50%  {background-color: blue;top: 100px; left: 100%;}
+    100% {border-style: dashed; background-color: orange; transform: rotate(360deg);resize: 20px;}
+  }
+
+img[style], img { 
+    animation-name:  colorChanger;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+   
+}
+
+
