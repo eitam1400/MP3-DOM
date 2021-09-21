@@ -82,7 +82,43 @@
 
 //---------------------------------------------------------------------------------------------------------------------------//
 
+// const btn = document.querySelector('.btn');
+// const audio = document.querySelector('audio');
+// const visualizer = document.querySelector('.visualizer')
 
+// btn.addEventListener('click', e => {
+//   audio.paused ? audio.play() : audio.paused();
+//   btn.classList.toggle('btn-play');
+//   btn.classList.toggle('btn.pause');
+// })
+
+// window.AudioContext = window.AudioContext || window.webkitAudioContext
+// const ctx = new Window.AudioContext();
+
+// const analyser = ctx.createAnalyser();
+// const source = ctx.createMediaElementSource(audio);
+// source.connect(analyser);
+// source.connect(ctx.destination);
+// analyser.fftSize = 64;
+// const bufferLength = analyser.frequencyBinCount;
+
+
+// let dataArray = new Uin8Array(bufferLength);
+// let elements =[];
+// for(let i =0; i<bufferLength; i++)
+// {
+//   const element = dcument.createElement('span');
+//   element.classList.add('element');
+//   elements.push(elemnt);
+//   visualizer.appendChild(element);
+// }
+
+// const update = () => {
+//   requestAnimationFrame(update);
+//   analyser.getByteFrequencyData(dataArray);
+//   console.log(dataArray);
+// };
+// update();
 
 //---------------------------------------------------------------------------------------------------------------------------//
 
@@ -190,24 +226,11 @@ document.getElementById('songs').insertBefore(imagesContainer, table); // table.
 
 /**----- insert play button to images -----**/
 
-
+// const imges = Array.from(document.querySelectorAll('.song-image'));
+// console.log(["ALL IMAGES"], imges)
 // const playerButton = createElement("img", [], ["player-button-image"], {src: "https://www.clipartmax.com/png/middle/430-4305244_see-also-related-to-unique-red-start-button-button-transparent-video-player.png"})
-// play button
-
-// play_button = document.createElement("div");
-// play_button.className = "play-button"
-// play_button.style.cssText = `background-color: #FFFFFF; min-height: 20px; min-width: 20px;`
-// for (let each of document.querySelectorAll('.song-image')) {
-
-//   console.log(each)
-//   each.appendChild(play_button)
-// }
-
-const imges = Array.from(document.querySelectorAll('.song-image'));
-console.log(["ALL IMAGES"], imges)
-const playerButton = createElement("img", [], ["player-button-image"], {src: "https://www.clipartmax.com/png/middle/430-4305244_see-also-related-to-unique-red-start-button-button-transparent-video-player.png"})
-//- - - - - - - - - - - - - - -- - -  - --  --  - -- - - - - --  - -- - - -- - - - - - - -- - - - - - - - - - -  -- - - - // public variable/s
-imges.forEach(img => img.append(playerButton)); 
+// //- - - - - - - - - - - - - - -- - -  - --  --  - -- - - - - --  - -- - - -- - - - - - - -- - - - - - - - - - -  -- - - - // public variable/s
+// imges.forEach(img => img.append(playerButton)); 
 
 
     

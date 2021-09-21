@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+
+
+.box{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+    filter: blur(5px) contrast(10);
+    mix-blend-mode: screen;
+}
+
+.visualizer{
+  position:relative;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background:#fff;
+  transition: .5s;
+  transform: rotateZ(180deg);
+}
+
+.btn-play{
+  border-left: 80px solid #5f5;
+  border-bottom: 50px solid transparent;
+  border-top:50px solid transparent ;
+  cursor: pointer;
+}
+
+.btn-pause{
+  border-right: 80px solid #5f5;
+  border-left: 80px solid #5f5;
+  height: 100px;
+  width: 75px;
+  cursor:pointer;
+
+}
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  background: #2a2a2a;
+  border-radius: 50%;
+  z-index: 10;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.element{
+  position:absolute;
+  top: 50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  display:inline-block;
+  width:50px;
+  height:50px;
+  border-radius:10px;
+  border-top:40px solid #fff;
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  transform-origin: top left;
+  transition: .25s;
+
+}
+    
+</style>
+
+
+</head>
+<body>
+
+
+
+        <audio src = "songs/wintersun.mp3"></audio>
+              
+        <div class="box">
+            <div class="visualizer"></div>
+        </div>
+
+        <div class="play">
+            <div class="btn btn-play"></div>
+        </div>
+       
+        
+
+
+
+
+    
+</body>
+
+<script>
+
+   
+
+
+
+const btn = document.querySelector('.btn');
+const audio = document.querySelector('audio');
+const visualizer = document.querySelector('.visualizer')
+
+btn.addEventListener('click', e => {
+  audio.paused ? audio.play() : audio.pause();
+  btn.classList.toggle('btn-play');
+  btn.classList.toggle('btn-pause');
+})
+
+window.AudioContext = window.AudioContext || window.webkitAudioContext
+const ctx = new AudioContext();
+
+
+const analyser = ctx.createAnalyser();
+const source = ctx.createMediaElementSource(audio);
+source.connect(analyser);
+source.connect(ctx.destination);
+analyser.fftSize = 64;
+const bufferLength = analyser.frequencyBinCount;
+
+
+let dataArray = new Uint8Array(bufferLength);
+let elements =[];
+for(let i =0; i<bufferLength; i++)
+{
+  const element = document.createElement('span');
+  element.classList.add('element');
+  elements.push(element);
+  visualizer.appendChild(element);
+}
+
+const clamp = (num, min, max ) => {
+    if(num >= max) return max;
+    if(num <= min) return min;
+    return num;
+};
+
+const update = () => {
+  requestAnimationFrame(update);
+  analyser.getByteFrequencyData(dataArray);
+  console.log(dataArray);
+  for(let i=0; i < bufferLength; i++)
+  {
+      let item = dataArray[i];
+      item = item > 150 ? item/1.5 : item * 1.25 ;
+      elements[i].style.transform =`rotateZ${i * (360 / bufferLength)}deg) translate(-50%, ${clamp(item,100,150)}px`;
+  }
+};
+update();
+
+
+
+
+</script>
+</html>

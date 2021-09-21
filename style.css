@@ -78,12 +78,76 @@
   }
 }
 
+/* .box{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.visualizer{
+  position:relative;
+  widht: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background:#fff;
+  transition: .5s;
+
+}
+
+.btn-play{
+  border-left: 80p solid #5f5;
+  border-bottom: 50px solid transparent;
+  border-top:50px solid transparent ;
+  cursor: pointer;
+}
+
+.btn-pause{
+  border-right: 80p solid #5f5;
+  border-left: 80p solid #5f5;
+  height: 100px;
+  width: 75px;
+  cursor:pointer;
+
+}
+
+.play{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  background: #2a2a2a;
+  border-radius: 50%;
+  z-index: 10;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.element{
+  position:absolute;
+  top: 50%;
+  left:50%;
+  transform:translate(-505, -50%);
+  display:inline-block;
+  width:50px;
+  height:50px;
+  border-radius:10px;
+  border-top:40px solid #fff;
+  border-right: 20px solid transparent;
+  border-left: 20px solid transparent;
+  transform-origin: top left;
+  transition: .25s;
+
+} */
+
 .loading{
   z-index: 200;
   animation-name: song-loader-screen;
   animation-iteration-count: 1;
 }
-
+/* 
 .player-button-image{
   height: 20px;
   width: 20px;
@@ -91,7 +155,7 @@
   position: absolute;
   display: inline-flex;
 
-}
+} */
 
 img[style], img { 
     animation-name:   break, colorChanger, imageOpacity, hidden;
