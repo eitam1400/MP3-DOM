@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player</title>
+
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+    html {
+        height: 100vh;
+        width: 100vw;
+
+    }
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        background-color: #1B1C22;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .album-container
+    {
+        height: 50%;
+        width: 70%;
+        display: flex;
+        gap: 50px;
+        /* background-color: aqua; */
+    }
+
+    .eachcover
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .images
+    {
+        position: relative;
+        border-radius: 20px;
+        object-fit: contain;
+        height: 300px;
+    }
+
+
+    .play-button
+    {
+        color: white;
+        position: absolute;
+        background-color: black;
+        height: 50px;
+        width: 60px;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .play-button:hover
+    {
+        cursor: pointer;
+    }
+    
+</style>
+
+
+</head>
+<body>
+
+    <div class="album-container">
+        <div id="1" class="eachcover">
+            <img class="images"src="https://cdn.discordapp.com/attachments/889787187296616490/889812495483682837/jadensmith_dreads.jpg">
+            <div class="play-button"><i class="fas fa-play"></i></div>
+        </div>
+        
+        <div id="2" class="eachcover">
+            <img class="images"src="https://cdn.discordapp.com/attachments/889787187296616490/889812429419184138/Jaden_Smith_Pink.jpg">
+            <div class="play-button"><i class="fas fa-play"></i></div>
+        </div>
+
+        <div id="3" class="eachcover">
+            <img class="images"src="https://cdn.discordapp.com/attachments/889787187296616490/889812572684038184/LOOK-3.jpg">
+            <div class="play-button"><i class="fas fa-play"></i></div>
+        </div>
+       
+        
+
+
+
+    </div>
+
+    
+</body>
+
+<script>
+
+let tracks = [
+        {
+            id: 1,
+            title: "Vortex",
+            album: "Wallflowers",
+            artist: "Jinjer",
+            coverArt: "https://cdn.discordapp.com/attachments/889787187296616490/889812495483682837/jadensmith_dreads.jpg",
+            url: "https://cdn.discordapp.com/attachments/889787187296616490/889827873827983430/showuswhatyougot.mp3"
+        },
+        {
+            id: 2,
+            title: "Vinda",
+            album: "Godtfolk",
+            artist: "Songleikr",
+            coverArt: "https://cdn.discordapp.com/attachments/889787187296616490/889812429419184138/Jaden_Smith_Pink.jpg",
+            url: "https://cdn.discordapp.com/attachments/889787187296616490/889827938307047434/therazoredge.mp3"
+
+        },
+        {
+            id: 3,
+            title: "Shiroyama",
+            album: "The Last Stand",
+            artist: "Sabaton",
+            coverArt: "https://cdn.discordapp.com/attachments/889787187296616490/889812572684038184/LOOK-3.jpg",
+            url: "https://cdn.discordapp.com/attachments/889787187296616490/889827873827983430/showuswhatyougot.mp3"
+
+        }
+    ]
+
+
+
+   let already_playing = 0 // not
+   let audio = new Audio();
+
+   let eachID
+//    let pause_status
+
+
+    // play button functionality
+    let play_buttons = document.querySelectorAll(".play-button")
+    for (let each of play_buttons) {
+        each.addEventListener("click", trackClicked)
+    }
+
+    function trackClicked(e) 
+    {
+            // // Clicked on same track
+            // if (eachID == parseInt(e.currentTarget.parentNode.id))
+            // {
+
+            // }
+            document.getElementById("MyElement").className = "MyClass";
+            eachID = parseInt(e.currentTarget.parentNode.id)
+           
+
+            let item = tracks.find(item => item.id === eachID);
+
+            let url = item.url
+
+            
+
+            if (already_playing == 1)
+            {
+                audio.pause()
+                already_playing = 0
+            }
+
+     
+            audio.src = url
+            audio.play();
+            already_playing = 1
+         
+
+
+
+        
+    }
+
+
+// let audio1 = new Audio("https://cdn.discordapp.com/attachments/889787187296616490/889827873827983430/showuswhatyougot.mp3");
+
+// audio1.addEventListener("canplaythrough", event => {
+// /* the audio is now playable; play it if permissions allow */
+// audio1.play();
+// });
+
+
+
+
+
+</script>
+</html>
